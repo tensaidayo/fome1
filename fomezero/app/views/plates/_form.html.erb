@@ -1,0 +1,48 @@
+<div class="row">
+ <div class="col-md-4 col-md-offset-4">
+<%= form_with(model: plate, local: true) do |form| %>
+  <% if plate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plate.errors.count, "error") %> prohibited this plate from being saved:</h2>
+
+      <ul>
+      <% plate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+      <label>Restaurante</label>
+      <%= form.select :restaurant_id, Restaurant.all.collect {|restaurant| [restaurant.name, restaurant.id]}, :class => "form-control" %>
+  </div>
+
+  <div class="form-group ">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="field">
+   <label>Ingredientes</label><br>
+   <%= form.collection_check_boxes(:ingredient_ids, Ingredient.all, :id, :description, checked: plate.ingredients.map(&:id)) do |i| %>
+     <%= i.check_box %> <%= i.label %>
+   <% end %>
+ </div>
+
+  <div class="form-group">
+    <%= form.label :cooktime %>
+    <%= form.time_select :cooktime, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
+</div>

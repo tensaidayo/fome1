@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @plate.description %>
+</p>
+
+
+<p>
+  <strong>Price:</strong>
+  <%= @plate.price %>
+</p>
+
+
+<p>
+  <strong>Cooktime:</strong>
+  <%= @plate.cooktime %>
+</p>
+
+<p>
+  <strong>Ingredientes:</strong>
+  <%= @plate.ingredients.map(&:description).join(', ') %>
+</p>
+
+
+<%= link_to 'Editar', edit_plate_path(@plate) %> |
+<%= link_to 'Voltar', plates_path %>

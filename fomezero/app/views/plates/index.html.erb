@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<center>
+<h1>Plates</h1>
+<br>
+<%= link_to 'Novo Plate', new_plate_path %>
+<br>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Preco </th>
+      <th>Cooktime</th>
+      <th>Ingredientes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plates.each do |plate| %>
+      <tr>
+
+        <td><%= plate.description %></td>
+        <td><%= plate.price %></td>
+        <td><%= plate.cooktime %></td>
+        <td><%= plate.ingredients.map(&:description).join(', ') %></td>
+        <td><%= link_to 'Ver', plate %></td>
+        <td><%= link_to 'Editar', edit_plate_path(plate) %></td>
+        <td><%= link_to 'Excluir', plate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</center>
+<br>

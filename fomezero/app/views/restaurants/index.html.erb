@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<center>
+<h1>Restaurantes - レストラン</h1>
+<br>
+<%= link_to 'New Restaurant', new_restaurant_path %>
+<br>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Restaurante</th>
+      <th>Endereco</th>
+      <th>Telefone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.fone %></td>
+        <td><%= link_to 'Ver', restaurant %></td>
+        <td><%= link_to 'Editar', edit_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Excluir', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table></center>
+
+<br>
